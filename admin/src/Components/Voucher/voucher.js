@@ -1,31 +1,61 @@
+import { Table } from "antd";
 import React from "react";
-import Form from "./Formadmin";
-import Table from "./Tabadmin";
 
-class App extends React.Component {
-  constructor() {
-    super();
-
+class Tab extends React.Component {
+   constructor(props) {
+    super(props);
     this.state = {
-      items: []
+      columns: [
+        {
+          title: "Voucher Name",
+          dataIndex: "vouchername",
+          key: "vouchername"
+        },
+        {
+          title: "Voucher Amount",
+          dataIndex: "amount"
+        },
+        {
+          title: "Validity (yy-mm-dd)",
+          dataIndex: "validity"
+        },
+        {
+          title: "Voucher Description",
+          dataIndex: "description"
+        },
+        
+      ],
+      data: []
     };
   }
-
-  handleFormSubmit = props => {
-    console.log(props);
-    this.setState({
-      items: props[0]
-    });
-    console.log(this.state.items);
-  };
+  componentDidMount() {
+    /* 
+    try{
+      axios.get(``)
+      .then(response=>{
+      this.setState({
+      data:response.data
+      })
+      })
+    }
+    catch(error){
+    console.log(error);
+    }
+    */
+  }
   render() {
     return (
-      <div className="App">
-        <Form handleFormSubmit={this.handleFormSubmit} />
-        <br />
-        <Table items={this.state.items} />
+      <div>
+        <Table
+          columns={this.state.columns}
+          dataSource={this.state.data}
+          bordered
+          rowKey="vouchername"
+          size="small"
+        />
       </div>
     );
   }
 }
-export default App;
+
+export default Tab;

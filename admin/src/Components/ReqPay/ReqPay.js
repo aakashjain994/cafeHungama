@@ -1,19 +1,24 @@
 import React from "react";
 import { Table } from "antd";
+import axios from "axios";
 class App extends React.Component {
   state = {
     columns: [
       {
-        title: "Client Id",
-        dataIndex: "clientId"
+        title: "Transaction Id",
+        dataIndex: "transaction_id"
       },
       {
-        title: "Client Name",
-        dataIndex: "clientName"
+        title: "Client First Name",
+        dataIndex: "client_firstName"
+      },
+      {
+        title: "Client Last Name",
+        dataIndex: "client_lastName"
       },
       {
         title: "Client Comany",
-        dataIndex: "clientCompany"
+        dataIndex: "client_companyName"
       },
       {
         title: "Date of transaction",
@@ -21,7 +26,7 @@ class App extends React.Component {
       },
       {
         title: "Opening Balance",
-        dataIndex: "openbal"
+        dataIndex: "opening_balance"
       },
       {
         title: "Amount Paid",
@@ -29,13 +34,24 @@ class App extends React.Component {
       },
       {
         title: "Closing Balance",
-        dataIndex: "closingbal"
+        dataIndex: "closing_balance"
       }
     ],
     data: []
   };
   componentDidMount() {
     //call api
+    try {
+      axios
+        .get(
+          `https://cafehungama.herokuapp.com/superadmin/superadminid/payments/get`
+        )
+        .then(response => {
+          this.setState({ data: response.data });
+        });
+    } catch (error) {
+      console.log(error);
+    }
   }
   render() {
     return (

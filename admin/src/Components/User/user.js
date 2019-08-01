@@ -1,6 +1,6 @@
 import React from "react";
 import { WrappedAdvancedSearchForm } from "./AdvancedSearchForm";
-import EditableFormTable from "./EditableTable";
+import EditableTable from "./EditableTable";
 import axios from "axios";
 
 class User extends React.Component {
@@ -46,7 +46,7 @@ class User extends React.Component {
       <div>
         <WrappedAdvancedSearchForm onSubmit={this.onTermSubmit} />
 
-        <EditableFormTable
+        <EditableTable
           userid={this.state.selecteduser}
           loading={this.state.loading}
         />

@@ -1,19 +1,28 @@
-body {
-  background-color: grey;
-}
 h3 {
   text-align: center;
 }
-.button {
-  background-color: #ececec;
-  padding: 25px 40px;
-  font-size: 20px;
-  margin-left: 100px;
-  margin-top: 100px;
-}
-.vimage{
+.vimage {
   float: left;
 }
-.vdetail{
-  float : right;
+.vdetail {
+  float: right;
+}
+.listofvenues {
+  width: 100%;
+  margin: 5px;
+  text-align: center;
+  font-size: 300%;
+  line-height: 2;
+  color: black;
+}
+.venueslist {
+  width: 45%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid black;
+  text-align: left;
+  margin: 2.5%;
 }

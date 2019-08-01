@@ -1,7 +1,8 @@
 import { Table } from "antd";
 import React from "react";
-import axios from "axios";
-//make a state for called response for accept and decline and pass that as parameter in axios.post
+//import axios from "axios";
+import API from "../../api/API";
+
 class Tab extends React.Component {
   constructor(props) {
     super(props);
@@ -42,14 +43,10 @@ class Tab extends React.Component {
   }
   callApi() {
     try {
-      this.setState({loading:true})
-      axios
-        .get(
-          `https://cafehungama.herokuapp.com/client/5d09eb072f965c7314727e4b/support`
-        )
-        .then(response => {
-          this.setState({ data: response.data.reverse(), loading: false });
-        });
+      this.setState({ loading: true });
+      API.get(`/client/5d09eb072f965c7314727e4b/support`).then(response => {
+        this.setState({ data: response.data.reverse(), loading: false });
+      });
     } catch (e) {
       console.log(e);
       this.setState({ loading: false });
@@ -59,11 +56,7 @@ class Tab extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.items !== this.props.items) {
       this.setState({ loading: true });
-      axios
-        .post(
-          "https://cafehungama.herokuapp.com/client/5d09eb072f965c7314727e4b/support",
-          this.props.items
-        )
+      API.post("/client/5d09eb072f965c7314727e4b/support", this.props.items)
         .then(() => {
           console.log("yoy");
           this.callAPI();
@@ -73,20 +66,8 @@ class Tab extends React.Component {
           console.log("Error");
           this.callApi();
         });
-
-      /* this.setState({
-        data: [this.props.items, ...this.state.data]
-      });*/
     }
   }
-  /*static getDerivedStateFromProps(props, state) {
-    if (props.items !== state.data) {
-      axios.post(
-        "https://cafehungama.herokuapp.com/client/5d09eb072f965c7314727e4b/support",
-        props.items
-      );
-    }
-  }*/
   render() {
     return (
       <div>

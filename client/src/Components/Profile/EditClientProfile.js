@@ -50,11 +50,12 @@ class EditClientProfileForm extends React.Component {
                   required: true,
                   message: 'First Name is Required',
                 }
-              ]
+              ],
+              initialValue: this.props.data.firstName
             })(<Input />)}
           </FormItem>
           <FormItem label="Last Name">
-            {getFieldDecorator("lastName")(<Input />)}
+            {getFieldDecorator("lastName", { initialValue: this.props.data.lastName })(<Input />)}
           </FormItem>
           <FormItem label="Phone Number">
             {getFieldDecorator("contact", {
@@ -64,7 +65,7 @@ class EditClientProfileForm extends React.Component {
                   message: 'Phone Number is Required',
                   pattern: "[1-9][0-9]{9}"
                 }
-              ]
+              ], initialValue: this.props.data.contact
             })(<Input />)}
           </FormItem>
           <FormItem label="Alternate Phone Number">
@@ -75,7 +76,7 @@ class EditClientProfileForm extends React.Component {
                   message: 'Invalid',
                   pattern: "[1-9][0-9]{9}"
                 }
-              ]
+              ], initialValue: this.props.data.alternateContact
             })(<Input />)}
           </FormItem>
           <FormItem label="Address">
@@ -85,17 +86,17 @@ class EditClientProfileForm extends React.Component {
                   required: true,
                   message: 'Address is Required',
                 }
-              ]
+              ], initialValue: this.props.data.line1Add
             })(<Input placeholder="Line" />)}
-            {getFieldDecorator('line2Add')(<Input Input placeholder="Line 2" />)}
-            {getFieldDecorator('city')(<Input placeholder="City" />)}
+            {getFieldDecorator('line2Add', { initialValue: this.props.data.line2Add })(<Input Input placeholder="Line 2" />)}
+            {getFieldDecorator('city', { initialValue: this.props.data.city })(<Input placeholder="City" />)}
             {getFieldDecorator('state', {
               rules: [
                 {
                   required: true,
                   message: 'State is Required',
                 }
-              ]
+              ], initialValue: this.props.data.state
             })(<Input Input placeholder="State" />)}
           </FormItem>
           <FormItem label="Email">
@@ -106,7 +107,7 @@ class EditClientProfileForm extends React.Component {
                   message: 'Enter Valid Email',
                   type: "email"
                 }
-              ]
+              ], initialValue: this.props.data.email
             })(<Input />)}
           </FormItem>
           <Form.Item>

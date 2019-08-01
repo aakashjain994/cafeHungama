@@ -59,7 +59,7 @@ class Venue extends Component {
   };
   onSubmit = props => {
     console.log(props);
-    API.post(`/client/5d09067224036b46e40f8d30/venues`, props[0]).then(function (
+    API.post(`/client/5d09067224036b46e40f8d30/venues`, props[0]).then(function
       response
     ) {
       console.log(response);

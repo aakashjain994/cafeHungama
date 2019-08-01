@@ -25,6 +25,11 @@ class UserDetail extends React.Component {
         title: "Payment Done",
         dataIndex: "PaymentDone",
         key: "Payment Done"
+      },
+      {      
+        title: "Voucher Applied",
+        dataIndex: "voucherName",
+        key:"voucherName"
       }
     ]
   };
@@ -56,7 +61,7 @@ class UserDetail extends React.Component {
           <Card title="Booking Details" style={{ width: 900 }}>
             <Table
               columns={this.state.columns}
-              dataSource={bookings}
+              dataSource={bookings}                                //will have to change this
               pagination={false}
             />
           </Card>
