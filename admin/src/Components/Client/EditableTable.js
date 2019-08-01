@@ -60,13 +60,6 @@ class EditableTable extends React.Component {
     loading:true,
     columns: [
       {
-        title: "clientID",
-        dataIndex: "_id", //clientid
-        width: "5%",
-        editable: false,
-        key: "_id"
-      },
-      {
         title: "First Name",
         dataIndex: "firstName",
         width: "10%",
@@ -100,7 +93,7 @@ class EditableTable extends React.Component {
       },
       {
         title: "Pendingpay",
-        dataIndex: "pendingpay",
+        dataIndex: "pending_pay",
         width: "10%",
         editable: true
       },

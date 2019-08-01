@@ -50,7 +50,6 @@ class Venue extends Component {
                 <h4>Screens:{venue.noOfScreens}</h4>
                 <h4>Amenties:{venue.amenties}</h4>
                 <h4>Contact:{venue.venueContact}</h4>
-                <h4>Capacity:{venue.maxCapacity}</h4>
               </div>
             </Card.Grid>
           </div>
@@ -69,7 +68,6 @@ class Venue extends Component {
     this.setState({
       visible: false
     });
-
   }
 
   render() {

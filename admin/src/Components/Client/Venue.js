@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Switch, Icon } from "antd";
+import { Table, Switch } from "antd";
 import axios from 'axios';
 
 class EnableVenue extends React.Component {
@@ -11,11 +11,13 @@ class EnableVenue extends React.Component {
         title: "Action",
         dataIndex: "status",
         key: "x",
-        render: () => (
-          <Switch
-            checkedChildren={<Icon type="check" />}
-            unCheckedChildren={<Icon type="close" />}
-          />
+        render: (status) => (
+          <span>
+             {status==='enabled'?
+              (<Switch defaultChecked/>): (<Switch  />   )
+             }
+          </span>
+          
         )
       }
     ];

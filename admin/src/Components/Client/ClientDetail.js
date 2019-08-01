@@ -8,25 +8,30 @@ import AddTransaction from "./AddTransaction";
 
 const columns = [
   {
-    title: "Date",
+    title: "Date of transaction",
     dataIndex: "Date",
     key: "Date"
   },
   {
-    title: "Pending Dues",
-    dataIndex: "PendingDues",
-    key: "Pending Dues"
+    title: "Opening Balance",
+    dataIndex: "opening_balance",
+    key: "opening_balance"
   },
   {
-    title: "Payment Done",
-    dataIndex: "PaymentDone",
-    key: "Payment Done"
+    title: "Amount Paid",
+    dataIndex: "amount",
+    key: "amount"
+  },
+  {
+    title: "Closing Balance",
+    dataIndex: "closing_balance",
+    key: "closing_balance"
   }
 ];
 const bankcolumns = [
   {
     title: "IFSC Code",
-    dataIndex: "ifsc",
+    dataIndex: "ifsc_code",
     key: "ifsc"
   },
   {
@@ -45,14 +50,6 @@ const bankcolumns = [
     key: "branch"
   },
 ]
-const data = [
-  {
-    key: "1",
-    Date: "9/01/2019",
-    PendingDues: "1000",
-    PaymentDone: "2000"
-  }
-];
 
 class ClientDetail extends React.Component {
   state = {
@@ -62,7 +59,7 @@ class ClientDetail extends React.Component {
     Accountno: "",
     visible1: false,
     visible2: false,
-    data: [],
+    transactiondata: [],
     profile:[],
     bankdetails:[],
     loading:true
@@ -102,6 +99,7 @@ class ClientDetail extends React.Component {
     ).then(res=>{
       this.setState({ bankdetails: res.data, loading: false})
     });
+    
   }
   handleCancel1 = e => {
     console.log(e);
@@ -120,8 +118,8 @@ class ClientDetail extends React.Component {
     axios.post(
       `https://cafehungama.herokuapp.com/client/5d09067224036b46e40f8d30/venues`, props[0]
     ).then(function (response) {
-      console.log(response);
-      console.log(response.data);
+     // console.log(response);
+     // console.log(response.data);
     })
     this.setState({
       visible1: false
@@ -186,7 +184,7 @@ class ClientDetail extends React.Component {
                 <AddTransaction clientid="456TYHUI876" pendingdues="5000" />
               </Modal>
             </div>
-            <Table columns={columns} dataSource={data} pagination={false} />
+            <Table columns={columns} dataSource={this.state.transactiondata} pagination={false} />
           </Card>
         </div>
         <div />
