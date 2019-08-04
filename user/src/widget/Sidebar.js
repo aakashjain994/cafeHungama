@@ -3,6 +3,10 @@ import { Slider } from "antd";
 import "./Sidebar.css";
 import { Menu, Icon, Form, Input } from "antd";
 import { Rate } from "antd";
+import {Select} from 'antd';
+import {Switch} from 'antd';
+
+const Option = Select.Option;
 
 const { SubMenu } = Menu;
 
@@ -26,9 +30,12 @@ function Sidebar() {
     console.log("click ", e);
   };
 
-  function onChange(value) {}
+  function handleamentiesChange(value) {
+    console.log(value);
+  }
 
-  function onAfterChange(value) {
+  function onAfterpriceChange(value) {
+    console.log(value);
     setPriceRange(value);
   }
   function onAfterChangeDistance(value) {
@@ -36,10 +43,16 @@ function Sidebar() {
   }
 
   function handleChangeRate(value) {
+    console.log(value);
     setRateValue(value);
   }
+  function ontoggleChange(value){
+    console.log(value);
+  }
 
-  function handleChangeAmmenities() {}
+  function handleChange(value) {
+    console.log(value);
+  }
 
   function togglebutton() {
     setToggle(!toggle);
@@ -50,7 +63,6 @@ function Sidebar() {
       <h1>Filters</h1>
       <div className="SidebarFilter">
         <Menu
-          onClick={handleClick}
           style={{ width: 256 }}
           defaultSelectedKeys={["1"]}
           defaultOpenKeys={["sub1"]}
@@ -73,8 +85,7 @@ function Sidebar() {
                   marks={pricemarks}
                   step={100}
                   defaultValue={pricerange}
-                  onChange={onChange}
-                  onAfterChange={onAfterChange}
+                  onAfterChange={onAfterpriceChange}
                   max={1000}
                   min={0}
                 />
@@ -105,7 +116,26 @@ function Sidebar() {
             </Menu>
           </SubMenu>
 
-          <SubMenu
+          <Select
+              mode="multiple"
+              style={{ width: '100%' }}
+              placeholder="Filter by amenties"
+              defaultValue={['AC', 'wifi']}
+              onChange={handleamentiesChange}
+              key="amenities"
+              title={
+              <span>
+                <Icon type="shop" />
+                <span>Amenities</span>
+              </span>
+              }
+          >
+            <Option key="AC">AC</Option>
+            <Option key="eating facility">Eating Facility</Option>
+            <Option key="washroom">Washroom</Option>
+            <Option key="wifi">WiFi</Option>
+          </Select>
+          {/*<SubMenu
             key="amenities"
             title={
               <span>
@@ -163,8 +193,10 @@ function Sidebar() {
               </label>
             </Menu.Item>
           </SubMenu>
+          */}
 
-          <SubMenu
+
+          {/*<SubMenu
             key="sort_by_distance"
             title={
               <span>
@@ -188,7 +220,12 @@ function Sidebar() {
                 />
               </div>
             </Menu>
-          </SubMenu>
+          </SubMenu>*/}
+           <Menu.Item key="sort_by_distance">
+                Sort By distance
+                <Switch style={{marginLeft:'50px'}} onChange={ontoggleChange} />
+            </Menu.Item>
+
 
           <SubMenu
             key="map_view"

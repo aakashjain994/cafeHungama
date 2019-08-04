@@ -1,22 +1,81 @@
-.event-card{
-    float: left;
-    width: 30%; /* three containers (use 25% for four, and 50% for two, etc) */
-    padding: 15px; /* if you want space between the images */
-    margin:auto;
-    height: 200px;;
-    transition: transform .4s;
+.event-card {
+  float: left;
+  width: 30%; /* three containers (use 25% for four, and 50% for two, etc) */
+  padding: 15px; /* if you want space between the images */
+  margin: auto;
+  height: 200px;
+  transition: transform 0.4s;
 }
-.event-card:hover{
-    transform: scale(1.2) ;
+.event-card:hover {
+  transform: scale(1.2);
 }
-.ant-card-head{
-    background-color:#0a3478 !important;
-    color:white !important;
+.V .ant-card-head {
+  background-color: #52780a !important;
+  color: white !important;
 }
-.ant-card-body{    
-    padding: 10px !important ;  
-    background: aliceblue !important; 
+.I .ant-card-head {
+  background-color: #7d4604 !important;
+  color: white !important;
 }
-.ant-card{
-    background: aliceblue;
+.B .ant-card-head {
+  background-color: #52780a !important;
+  color: white !important;
+}
+.G .ant-card-head {
+  background-color: #0a6278 !important;
+  color: white !important;
+}
+.Y .ant-card-head {
+  background-color: #7d4604 !important;
+  color: white !important;
+}
+.O .ant-card-head {
+  background-color: #0a6278 !important;
+  color: white !important;
+}
+.ant-card-head-title {
+  padding: 0 !important;
+  line-height: 2.5;
+}
+.V .ant-card-body {
+  padding: 10px !important ;
+  background: #ecfcd0 !important;
+}
+.V .ant-card {
+  background: #ecfcd0 !important;
+}
+.I .ant-card-body {
+  padding: 10px !important ;
+  background: #fadfbf !important;
+}
+.I .ant-card {
+  background: #fadfbf !important;
+}
+.B .ant-card-body {
+  padding: 10px !important ;
+  background: #ecfcd0 !important;
+}
+.B .ant-card {
+  background: #ecfcd0 !important;
+}
+.G .ant-card-body {
+  padding: 10px !important ;
+  background: aliceblue !important;
+}
+.G .ant-card {
+  background: aliceblue !important;
+}
+.Y .ant-card-body {
+  padding: 10px !important ;
+  background: #fadfbf !important;
+}
+.Y .ant-card {
+  background: #fadfbf !important;
+}
+.O .ant-card-body {
+  padding: 10px !important ;
+  background: aliceblue !important;
+}
+.O .ant-card {
+  background: aliceblue !important;
 }

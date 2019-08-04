@@ -121,7 +121,7 @@ class RouterApp extends React.Component {
                   <span>Notifications</span>
                   <Link to="/notifications" />
                 </Menu.Item>
-                <Menu.Item key="2">
+                <Menu.Item key="2" disabled>
                   <Icon type="profile" />
                   <span>Profile</span>
                   <Link to="/profile" />

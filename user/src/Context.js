@@ -7,6 +7,8 @@ class ContextProvider extends Component {
         super(props);
         this.state = {
             location:'',
+            price:0,
+            selectNumberOfSeats:1,
             date:'',
             eventType:'',
             venues:'',
@@ -37,7 +39,20 @@ class ContextProvider extends Component {
         })
     }
 
-
+    changePrice = () => {
+        this.setState({
+          price: Math.max(...this.state.selectedData.map(sel => sel.price))
+        });
+      };
+      decrement = () => {
+        if (this.state.selectNumberOfSeats > 0)
+          this.setState({
+            selectNumberOfSeats: this.state.selectNumberOfSeats - 1
+          });
+      };
+      increment = () => {
+        this.setState({ selectNumberOfSeats: this.state.selectNumberOfSeats + 1 });
+      };
      handleButtonClick(e) {
         //message.info('Click on left button.');
         //console.log('searching data');
@@ -103,7 +118,7 @@ class ContextProvider extends Component {
         this.setState({
           selectedRowKeys,
           selectedData: selectedRows,
-          //price: selectedRows.reduce((acc, curr) => acc + curr.price, 0)
+          price: selectedRows.reduce((acc, curr) => acc + parseInt(curr.price), 0)
         });
     }
 
@@ -176,6 +191,16 @@ class ContextProvider extends Component {
             })
 
     }
+    updateNumberOfSeats = e => {
+        if (e.target.value)
+          this.setState({
+            selectNumberOfSeats: parseInt(e.target.value)
+          });
+        else
+          this.setState({
+            selectNumberOfSeats: ""
+          });
+      }
 
     logout = ()=>{
         localStorage.removeItem("user");
@@ -196,7 +221,12 @@ class ContextProvider extends Component {
                 onSelectChange:this.onSelectChange,
                 signup:this.signup,
                 login:this.login,
-                logout:this.logout
+                logout:this.logout,
+                updateNumberOfSeats:this.updateNumberOfSeats,
+                changePrice:this.changePrice,
+                increment:this.increment,
+                decrement:this.decrement
+
 
             }}>
                 {this.props.children}

@@ -74,7 +74,7 @@ class RouterApp extends React.Component {
                 <span>Manage Coupon</span>
                 <Link to="/coupon" />
               </Menu.Item>
-              <Menu.Item key="4">
+              <Menu.Item key="4" disabled>
                 <Icon type="schedule" />
                 <span>Manage Booking</span>
                 <Link to="/booking" />

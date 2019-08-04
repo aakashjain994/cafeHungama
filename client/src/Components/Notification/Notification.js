@@ -1,50 +1,57 @@
 import React from "react";
-import { Table, Tag } from "antd";
-import axios from "axios";
+import { Table, Button } from "antd";
+import API from "../../api/API";
 class Notifications extends React.Component {
   state = {
     columns: [
       {
         title: "Notification",
-        dataIndex: "notification"
-      } /*,
-      {
-        title: "Status",
-        dataIndex: "status",
-        render: status => (
+        dataIndex: "notification",
+        render: (text, record) => (
           <span>
-            {status.map(tag => {
-              let color = "white";
-              if (tag === "rejected") color = "volcano";
-              else if (tag === "accepted") color = "green";
-              else if (tag === "pending") color = "geekblue";
-              return (
-                <Tag color={color} key={tag}>
-                  {tag.toUpperCase()}
-                </Tag>
-              );
-            })}
+            {record.read === true ? (
+              <td>{text}</td>
+            ) : (
+              <td>
+                {text}&nbsp;&nbsp;
+                <Button
+                  onClick={this.handleClick}
+                  type="primary"
+                  style={{marginRight:0 }}
+                >
+                  Mark as read
+                </Button>
+              </td>
+            )}
           </span>
         )
-      }  */
+      }
     ],
     data: []
   };
   componentDidMount() {
-     
-        try{
-            axios.get(`https://cafehungama.herokuapp.com/client/5d38a08cd561f03a18743855/notifications/all`)
-            .then(response=>{
-            this.setState({
-                data:response.data
-            })
-            })
+    try {
+      API.get(`/client/5d38a08cd561f03a18743855/notifications/all`).then(
+        response => {
+          this.setState({
+            data: response.data
+          });
         }
-        catch (e) {
-          console.log(e);
-         // this.setState({ loading: false });
-        }
+      );
+    } catch (e) {
+      console.log(e);
+      // this.setState({ loading: false });
+    }
   }
+  handleClick = e => {
+    /* try {
+      API.put(`/client/5d38a08cd561f03a18743855/notifications/all`)
+    }
+    catch(error){
+    console.log(error)
+    }
+    */
+  };
   render() {
     const { data, columns } = this.state;
 

@@ -1,27 +1,31 @@
 .background-img {
   width: 100%;
-  height: 200px;
+  height: 300px;
+  background-size: cover;
+  background-repeat: no-repeat;
   background: url(events_medium.jpg);
 }
-.carousel{
-  height: 300px;
+
+.carousel {
+  height: 450px;
 }
+
 .ant-carousel .slick-slide {
+  height: 450px;
   text-align: center;
-  height: 300px;
-  line-height: 160px;
-  background: #364d79;
   overflow: hidden;
 }
 
 .ant-carousel .slick-slide h3 {
-  color: #fff;
+  color: black;
 }
+
 .Image-container {
   position: relative;
   z-index: -1;
 }
-.loc-event-date{
+
+.loc-event-date {
   margin: auto;
   width: 60%;
   display: block;
@@ -30,37 +34,39 @@
   margin-top: 6%;
   position: absolute;
 }
-.button.ant-btn.butcss.ant-dropdown-trigger{
+
+.button.ant-btn.butcss.ant-dropdown-trigger {
   height: 37px;
-  border-radius : 0px;
+  border-radius: 0px;
   line-height: 1.5;
 }
-.butcss{
+
+.butcss {
   font-size: 20px;
   font-weight: bold;
-  border: 3px solid black;
   border-radius: 0;
   width: 200px;
 }
 
-.ant-calendar-picker{
+/*.ant-calendar-picker {
   line-height: 2.5;
   display: -ms-inline-grid;
-  border: 3px solid black;
   border-radius: 0;
-  margin-bottom:-2.5%;
+  margin-bottom: -2.5%;
   width: 200px;
 }
-.ant-input{
-  height:35px;
 
-}
-.datepick{
-  margin-left:-0.07%;
-  border: 3px solid black;
+.ant-input {
+  height: 35px;
+
+}*/
+
+.datepick {
+  margin-left: -0.07%;
   border-radius: 0;
   width: 200px;
 }
+
 .SearchBar {
   text-align: center;
   position: absolute;
@@ -85,6 +91,7 @@
   margin: 10px;
   cursor: pointer;
 }
+
 .SEContainer {
   margin: 10px 50px;
   display: grid;
@@ -95,14 +102,17 @@
   .sidebar {
     display: block;
   }
+
   .event-list {
     width: 100%;
   }
+
   .SEContainer {
     display: grid;
     grid-template-columns: 100%;
   }
-  .homepage{
+
+  .homepage {
     display: grid;
     grid-template-columns: 100%;
   }

@@ -87,38 +87,26 @@ class BookSlots extends React.Component {
       price: record.price
     });
   };*/
-  changePrice = () => {
-    this.setState({
-      price: Math.max(...this.state.selectedData.map(sel => sel.price))
-    });
-  };
+
   disabledDate = current => {
     // Can not select days before today and after 15 days
     return (
       current < moment().startOf("day") || current > moment().add(14, "days")
     );
   };
-  decrement = () => {
-    if (this.state.selectNumberOfSeats > 0)
-      this.setState({
-        selectNumberOfSeats: this.state.selectNumberOfSeats - 1
-      });
-  };
-  increment = () => {
-    this.setState({ selectNumberOfSeats: this.state.selectNumberOfSeats + 1 });
-  };
+
   render() {
     console.log(this.state.price);
 
-    const { selectedRowKeys, columns } = this.state;
+    /*const { selectedRowKeys, columns } = this.state;
     const rowSelection = {
       selectedRowKeys,
       onChange: this.onSelectChange,
       getCheckboxProps: record => ({
         disabled: record.status === "NA" // Column configuration not to be checked
       })
-    };
-    const {data} = this.state;
+    };*/
+    const {data,columns} = this.state;
     console.log(data);
     return (
       <ContextConsumer>
@@ -143,25 +131,16 @@ class BookSlots extends React.Component {
                     defaultValue={moment()}
                   />
                   &nbsp;&nbsp;&nbsp;
-                  <Button onClick={this.decrement}> - </Button>
+                  <Button onClick={value.decrement}> - </Button>
                   &nbsp;&nbsp;
                   <input
                     type="text"
-                    value={this.state.selectNumberOfSeats}
+                    value={value.selectNumberOfSeats}
                     id="selectNumberOfSeats"
-                    onChange={e => {
-                      if (e.target.value)
-                        this.setState({
-                          selectNumberOfSeats: parseInt(e.target.value)
-                        });
-                      else
-                        this.setState({
-                          selectNumberOfSeats: ""
-                        });
-                    }}
+                    onChange={value.updateNumberOfSeats}
                   />{" "}
                   &nbsp;&nbsp;
-                  <Button onClick={this.increment}> + </Button>
+                  <Button onClick={value.increment}> + </Button>
                   <br />
                   <Row>
                     <Col lg={{ span: 13 }}>
@@ -196,7 +175,7 @@ class BookSlots extends React.Component {
                     </Col>
                     <Col lg={{ span: 1 }} />
                     <Col lg={{ span: 2 }}>
-                      <Button onClick={this.changePrice} type="primary" shape="round">
+                      <Button onClick={value.changePrice} type="primary" shape="round">
                         Select 1 slot of all the slots
                       </Button>
                     </Col>
@@ -208,7 +187,7 @@ class BookSlots extends React.Component {
                     </Col>
                   </Row>
                   <span className="note">
-                    Total Price: {this.state.selectNumberOfSeats * this.state.price}
+                    Total Price: {value.selectNumberOfSeats * value.price}
                   </span>
                   <br />
                   <Row>

@@ -68,7 +68,7 @@ class Drop extends React.Component{
                                 {(value.eventType===''?"Event Type":value.eventType)} <Icon type="down" />
                             </Button>
                         </Dropdown>
-                        <DatePicker onChange={value.onChange} className="datepick" placeholder="Select Date" />
+                        <DatePicker size="large" onChange={value.onChange} className="butcss" />
                         <Button onClick = {value.handleButtonClick} className="butcss" size="large" style={{ background:'#cfcebe'}}>
                             Search
                         </Button>

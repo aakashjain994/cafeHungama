@@ -7,21 +7,21 @@ import offer4 from './offer4.png'
 
 const carousel=()=>{
     return(
-        < Carousel autoplay >
+        <Carousel autoplay>
             <div>
-                <img src={offer1} style={{width:'100%', height: '100%'}}/>
+                <img src={offer1} style={{backgroundSize:'cover'}}/>
             </div>
             <div>
-                <img src={offer2} />
+                <img src={offer2} style={{backgroundSize:'cover'}}/>
             </div>
             <div>
-                <img src={offer3} />
+                <img src={offer3} style={{backgroundSize:'cover'}}/>
             </div>
             <div>
-                <img src={offer4} />
+                <img src={offer4} style={{backgroundSize:'cover'}}/>
             </div>
         </Carousel >
     );
-    
+
 }
 export default carousel;

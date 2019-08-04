@@ -66,7 +66,7 @@ class EditClientProfileForm extends React.Component {
                   pattern: "[1-9][0-9]{9}"
                 }
               ], initialValue: this.props.data.contact
-            })(<Input />)}
+            })(<Input disabled/>)}
           </FormItem>
           <FormItem label="Alternate Phone Number">
             {getFieldDecorator("alternateContact", {

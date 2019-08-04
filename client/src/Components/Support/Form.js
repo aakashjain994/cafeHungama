@@ -31,12 +31,14 @@ class Form extends React.Component {
   render() {
     return (
       <div id="Form">
-        <h3>Add a new item to the table:</h3>
+        <p>
+          <b>CREATE ISSUE:</b>
+        </p>
         <form onSubmit={this.handleFormSubmit}>
           <label htmlFor="issue_subject">
-            Issue Subject: &nbsp;&nbsp;
             <input
               id="issue_subject"
+              placeholder="Subject"
               value={this.state.issue_subject}
               type="text"
               name="issue_subject"
@@ -45,20 +47,20 @@ class Form extends React.Component {
           </label>
           &nbsp;&nbsp;
           <label htmlFor="issue_explanation">
-            Issue Explanation: &nbsp;&nbsp;
             <input
               id="issue_explanation"
+              placeholder="Explanation"
               value={this.state.issue_explanation}
               type="text"
               name="issue_explanation"
               onChange={this.handleInputChange}
             />
           </label>
-          <br />
+          &nbsp;&nbsp;
           <label htmlFor="issue_comment">
-            Issue Comment: &nbsp;&nbsp;
             <input
               id="issue_comment"
+              placeholder="Comments"
               value={this.state.issue_comment}
               type="text"
               name="issue_comment"
@@ -67,9 +69,10 @@ class Form extends React.Component {
           </label>
           &nbsp;&nbsp;
           <label htmlFor="immediate_contact">
-            Immediate Contact: &nbsp;&nbsp;
+            &nbsp;&nbsp;
             <input
               id="immediate_contact"
+              placeholder="Immediate Contact"
               value={this.state.immediate_contact}
               type="text"
               name="immediate_contact"

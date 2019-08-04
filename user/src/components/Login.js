@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import {Link} from 'react-router-dom';
 import { Form, Icon, Input, Button, Checkbox,Row } from 'antd';
 import {withContext} from '../Context';
 class Login extends React.Component {
@@ -53,7 +53,7 @@ class Login extends React.Component {
           <Button type="primary" htmlType="submit" className="login-form-button" style={{width:'100%'}}>
             Log in
           </Button>
-          Or <a href="" >Login!</a>
+          Or <Link to="/signup" >Register here</Link>
         </Form.Item>
       </Form>
       </Row>

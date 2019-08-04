@@ -83,8 +83,8 @@ function Header(props) {
              >
               <Menu.Item key="setting:1">Wallet</Menu.Item>
               <Menu.Item key="setting:2">My Profile</Menu.Item>
-              <Menu.Item key="setting:3">My Orders</Menu.Item>
-              <Menu.Item key="setting:4">Past Events</Menu.Item>
+              <Menu.Item key="setting:3"><Link to="/myorders">My orders</Link></Menu.Item>
+              <Menu.Item key="setting:4"><Link to="/pastbookings">Past Bookings</Link></Menu.Item>
               <Menu.Item key="setting:5">Support</Menu.Item>
               <Menu.Item key="setting:6">Newsfeed</Menu.Item>
               </SubMenu>

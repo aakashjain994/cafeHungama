@@ -9,6 +9,9 @@ import {ContextProvider} from './Context';
 import BookSlots from "./BookTicket/BookSlots";
 import Login from './components/Login';
 import Signup from "./components/Signup";
+import PastBookings from "../src/BookTicket/PastBookings";
+import ProtectedRoute from './components/ProtectedRoute';
+import MyOrders from '../src/BookTicket/MyOrders';
 function App () {
   return (
     <ContextProvider>
@@ -17,9 +20,11 @@ function App () {
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/event/:id" component={BookSlots} />
-        <Route path="/checkout" component={Checkout} />
+        <ProtectedRoute path="/checkout" component={Checkout} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/pastbookings" component={PastBookings} />
+        <Route path="/myorders" component={MyOrders} />
       </Switch>
       <div className="Footer">
         <Footer />
