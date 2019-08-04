@@ -33,18 +33,25 @@ class Demo extends React.Component {
     API
     .get(`/superadmin/superadminid/localities/get`)
     .then(res=>{
-      this.setState({ localities: res.data[0].locality});
-    //  for (let i = 0; i < this.state.localities.length; i++) {
-        childrenloc.push(<Option key={this.state.localities}>{this.state.localities}</Option>);
-    //  }
+      res.data.map(response => {
+        console.log(response.locality)
+        childrenloc.push(<Option key={response.locality}>{response.locality}</Option>)
+      })
+      //this.setState({ localities: childrenloc });
+      
+       // childrenloc.push(<Option key={this.state.localities}>{this.state.localities}</Option>);
+    
     }
     );
     //console.log(this.state.localities);
     API.get(`/user/cities/get`
     ).then(res =>{
-      this.setState({cities:res.data[0].city})
+      res.data.map(response => {
+        childrencity.push(<Option key={response.city}>{response.city}</Option>)
+      })
+     // this.setState({ cities:childrencity})
     //  console.log(res.data[0]);
-      childrencity.push(<Option key={this.state.cities}>{this.state.cities}</Option>);
+    //  childrencity.push(<Option key={this.state.cities}>{this.state.cities}</Option>);
 
     });
     API.get(`/user/amenities/get`
@@ -55,7 +62,7 @@ class Demo extends React.Component {
       res.data.map(response=>{
         childrenamenties.push(response.amenity_name)   
       })
-      this.setState({amentiess:childrenamenties})
+    //  this.setState({amentiess:childrenamenties})
      })
   }
   onInputChange =e=>{
@@ -106,6 +113,7 @@ class Demo extends React.Component {
       country: "India",
       state: this.state.city
     })
+    console.log(data.amenities);
     this.props.onSubmit(data);
   };
 

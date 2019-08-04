@@ -152,7 +152,7 @@ class EditableTable extends React.Component {
                 onOk={this.handleOk}
                 onCancel={this.handleCancel}
               >
-                <ClientDetail />
+                <ClientDetail detail={record} />
               </Modal>
             </span>
           );

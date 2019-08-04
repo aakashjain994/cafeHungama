@@ -27,11 +27,13 @@ class EnableVenue extends React.Component {
     };
   }
   componentDidMount() {
-    axios.get(
+   /* axios.get(
       `https://cafehungama.herokuapp.com/client/5d09067224036b46e40f8d30/venues`
     ).then(res => {
       this.setState({ data: res.data,loading:false });
     });
+    */
+    this.setState({ data: this.props.detail, loading: false })
   }
   render() {
     return (

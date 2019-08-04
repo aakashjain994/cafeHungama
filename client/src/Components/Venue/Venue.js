@@ -58,16 +58,15 @@ class Venue extends Component {
     else return <div>No Venues Registered</div>;
   };
   onSubmit = props => {
-    console.log(props);
-    API.post(`/client/5d09067224036b46e40f8d30/venues`, props[0]).then(function
-      response
-    ) {
-      console.log(response);
-      console.log(response.data);
+    console.log(props[0],"are props");
+    API.post(`/client/5d09067224036b46e40f8d30/venues`, props[0]).then(
+      response =>
+    {
+        this.setState({
+          visible: false
+        });
     });
-    this.setState({
-      visible: false
-    });
+    
   }
 
   render() {
@@ -104,14 +103,6 @@ class Venue extends Component {
 
             <Col span={12} />
           </Row>
-          <div>
-            <Modal
-              title="Venue Detail"
-              visible={this.state.visibleDetails}
-              onOk={this.handleOkDetails}
-              onCancel={this.handleCancelDetails}
-            />
-          </div>
         </Row>
       </div>
     );
