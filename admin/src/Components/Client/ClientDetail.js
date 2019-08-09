@@ -3,30 +3,35 @@ import "./ClientDetail.css";
 import { Card, Table, Row, Col, Modal, Icon, Button } from "antd";
 import Venue from "./Venue";
 import AddVenue from './AddVenue';
-import axios from 'axios';
+import API from '../../api/API';
 import AddTransaction from "./AddTransaction";
 
 const columns = [
   {
-    title: "Date",
+    title: "Date of transaction",
     dataIndex: "Date",
     key: "Date"
   },
   {
-    title: "Pending Dues",
-    dataIndex: "PendingDues",
-    key: "Pending Dues"
+    title: "Opening Balance",
+    dataIndex: "opening_balance",
+    key: "opening_balance"
   },
   {
-    title: "Payment Done",
-    dataIndex: "PaymentDone",
-    key: "Payment Done"
+    title: "Amount Paid",
+    dataIndex: "amount",
+    key: "amount"
+  },
+  {
+    title: "Closing Balance",
+    dataIndex: "closing_balance",
+    key: "closing_balance"
   }
 ];
 const bankcolumns = [
   {
     title: "IFSC Code",
-    dataIndex: "ifsc",
+    dataIndex: "ifsc_code",
     key: "ifsc"
   },
   {
@@ -45,14 +50,6 @@ const bankcolumns = [
     key: "branch"
   },
 ]
-const data = [
-  {
-    key: "1",
-    Date: "9/01/2019",
-    PendingDues: "1000",
-    PaymentDone: "2000"
-  }
-];
 
 class ClientDetail extends React.Component {
   state = {
@@ -62,10 +59,11 @@ class ClientDetail extends React.Component {
     Accountno: "",
     visible1: false,
     visible2: false,
-    data: [],
+    transactiondata: [],
     profile:[],
     bankdetails:[],
-    loading:true
+    loading:true,
+    data: []
   };
   
   showModal1 = () => {
@@ -92,7 +90,7 @@ class ClientDetail extends React.Component {
     });
   };
   componentDidMount(){
-    axios.get(
+  /*  axios.get(
     `https://cafehungama.herokuapp.com/client/5d368a7f4a915e2c58f34952/profile`
     ).then(res => {
       this.setState({ profile: res.data})
@@ -102,6 +100,8 @@ class ClientDetail extends React.Component {
     ).then(res=>{
       this.setState({ bankdetails: res.data, loading: false})
     });
+  */
+    this.setState({ data: this.props.detail,loading: false })
   }
   handleCancel1 = e => {
     console.log(e);
@@ -116,12 +116,12 @@ class ClientDetail extends React.Component {
     });
   };
   onSubmit = (props) => {
-    console.log(props);
-    axios.post(
-      `https://cafehungama.herokuapp.com/client/5d09067224036b46e40f8d30/venues`, props[0]
+    console.log(props.detail);
+    API.post(
+      `/client/${this.props.detail._id.str}/venues`, props[0]
     ).then(function (response) {
-      console.log(response);
-      console.log(response.data);
+     // console.log(response);
+     // console.log(response.data);
     })
     this.setState({
       visible1: false
@@ -129,18 +129,19 @@ class ClientDetail extends React.Component {
 
   }
   render() {
+    const {data} = this.state;
     return (
       <div>
         <div>
           <h3>
-            Client ID : {this.state.profile._id} &nbsp;&nbsp; Client Name :{this.state.profile.firstName}
-           &nbsp; &nbsp; Contact : {this.state.profile.contact}
+            Client ID : {data._id.str} &nbsp;&nbsp; Client Name :{data.firstName}
+           &nbsp; &nbsp; Contact : {data.contact}
           </h3>
         </div>
         &nbsp;
         <div>
           <Card title="Account Details" style={{ width: 600 }}>
-            <Table columns={bankcolumns} dataSource={this.state.bankdetails} pagination={false} loading={this.state.loading} />
+            <Table columns={bankcolumns} dataSource={data.bankdetails} pagination={false} loading={this.state.loading} />
           </Card>
         </div>
         &nbsp;
@@ -148,7 +149,7 @@ class ClientDetail extends React.Component {
           <Row>
             <Col span={12}>
               <Card title="Venues" style={{ width: 600 }}>
-                <Venue />
+                <Venue detail={data}/>
               </Card>
             </Col>
             <Col span={3}>
@@ -183,10 +184,10 @@ class ClientDetail extends React.Component {
                 onOk={this.handleOk2}
                 onCancel={this.handleCancel2}
               >
-                <AddTransaction clientid="456TYHUI876" pendingdues="5000" />
+                <AddTransaction clientid={data._id} pendingdues={data.pending_pay} />
               </Modal>
             </div>
-            <Table columns={columns} dataSource={data} pagination={false} />
+            <Table columns={columns} dataSource={data.paymentDetails} pagination={false} />
           </Card>
         </div>
         <div />

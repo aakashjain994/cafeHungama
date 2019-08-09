@@ -51,7 +51,6 @@ class Venue extends Component {
                 <h4>Screens:{venue.noOfScreens}</h4>
                 <h4>Amenties:{venue.amenties}</h4>
                 <h4>Contact:{venue.venueContact}</h4>
-                <h4>Capacity:{venue.maxCapacity}</h4>
               </div>
             </Card.Grid>
           </div>
@@ -60,15 +59,16 @@ class Venue extends Component {
     else return <div>No Venues Registered</div>;
   };
   onSubmit = props => {
-    console.log(props);
+    console.log(props[0],"are props");
     API.post(`/client/5d09067224036b46e40f8d30/venues`, props[0]).then(
-      response => {
+      response =>
+    {
         this.setState({
           visible: false
         });
-      }
-    );
-  };
+    });
+    
+  }
 
   render() {
     return (
@@ -106,14 +106,6 @@ class Venue extends Component {
 
             <Col span={12} />
           </Row>
-          <div>
-            <Modal
-              title="Venue Detail"
-              visible={this.state.visibleDetails}
-              onOk={this.handleOkDetails}
-              onCancel={this.handleCancelDetails}
-            />
-          </div>
         </Row>
       </div>
     );
