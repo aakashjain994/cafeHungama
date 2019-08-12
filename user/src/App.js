@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch,Redirect } from "react-router-dom";
 import Home from "./components/Home/Home";
 import EventDetails from "./widget/Events/EventDetails";
 import Header from "./components/Header/Header";
@@ -12,6 +12,7 @@ import Signup from "./components/Signup";
 import PastBookings from "../src/BookTicket/PastBookings";
 import ProtectedRoute from './components/ProtectedRoute';
 import MyOrders from '../src/BookTicket/MyOrders';
+import Profile from '../src/components/Profile';
 function App () {
   return (
     <ContextProvider>
@@ -25,6 +26,7 @@ function App () {
         <Route path="/signup" component={Signup} />
         <Route path="/pastbookings" component={PastBookings} />
         <Route path="/myorders" component={MyOrders} />
+        <Route path="/profile"component={Profile} />
       </Switch>
       <div className="Footer">
         <Footer />

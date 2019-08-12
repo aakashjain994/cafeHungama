@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import {withContext} from '../Context';
 import { Table, DatePicker, Button, Row, Col, Card } from "antd";
 import VenueDetails from "./VenueDetails";
 import NearestVenues from "./NearestVenues";
@@ -8,6 +9,7 @@ import Loader from 'react-loader-spinner';
 import {Link} from 'react-router-dom';
 import {ContextConsumer} from '../Context';
 const availability = ["Booked", "Normal", "NA", "Selected"];
+
 
 /*for (let i = 0; i < 24; i++) {
   data.push({
@@ -39,7 +41,7 @@ class BookSlots extends React.Component {
       },
       {
         title: " Status",
-        dataIndex: "status"
+        dataIndex: "remaining"
       }
     ]
   };
@@ -47,18 +49,23 @@ class BookSlots extends React.Component {
 
   componentDidMount(){
     const {id} = this.props.match.params;
-    fetch(`https://cafehungama.herokuapp.com/user/venues/${id}`)
+    const {date} = this.props.date;
+    console.log(date);
+    fetch(`http://localhost:5000/user/venues/${id}/${date}`)
     .then(response=>response.json())
     .then(s=>{
-       const slot_tables = s[0].slot_price_table;
+       const slot_tables = s
+       console.log(s);
        const data =[];
-        slot_tables[0].map(slots=>{
+        console.log(slot_tables);
+        slot_tables.map(slots=>{
+          console.log(slots);
           data.push({
             key:slots.time_slot,
             price:slots.ticket_price,
             name:slots.time_slot,
-            status:slots.ticket_sold
-
+            address:`${slots.tickets_sold}/${slots.requested_count}`,
+            remaining:`${slots.requested_count - slots.tickets_sold} left`
           })
           this.setState({data:data})
         })
@@ -68,6 +75,39 @@ class BookSlots extends React.Component {
         console.log(err);
     })
   }
+
+  holdSlots = () => {
+
+    var data = {
+        venueId:this.props.match.params.id,
+        ticketMRP:this.props.price,
+        soldPrice:this.props.price,
+        couponId:this.props.couponId,
+        timeSlot:this.props.selectedRowKeys,
+        number:this.props.selectNumberOfSeats,
+        fastFilling:this.props.fastFilling
+    }
+    console.log(data);
+    console.log(`Bearer  ${this.props.token}`);
+    fetch(`http://localhost:5000/user/bookings/new`,{
+      method:'POST',
+      headers:{
+          "Content-Type": "application/json",
+          "Authorization":`Bearer ${this.props.token}`
+      },
+      body:JSON.stringify(data)
+  })
+  .then(response=>response.json())
+  .then(data=>{
+      console.log(data);
+      console.log('werwer',this.props.updateticketId(data._id));
+      //this.props.setState({ticketId:data.ticketId});
+  })
+  .catch(err=>{
+      console.log(err);
+  })
+
+}
 
   /*onSelectChange = (selectedRowKeys, selectedRows) => {
     //  console.log("selectedRowKeys changed: ", selectedRowKeys, selectedRows);
@@ -107,11 +147,13 @@ class BookSlots extends React.Component {
       })
     };*/
     const {data,columns} = this.state;
+    console.log(this.props);
     console.log(data);
     return (
       <ContextConsumer>
         {
           (value)=>{
+            console.log(value);
             return ( <div>
               <Row>
                 <Col lg={{ span: 2 }} />
@@ -129,6 +171,7 @@ class BookSlots extends React.Component {
                     size="large"
                     disabledDate={this.disabledDate}
                     defaultValue={moment()}
+                    onChange={value.onChange}
                   />
                   &nbsp;&nbsp;&nbsp;
                   <Button onClick={value.decrement}> - </Button>
@@ -192,7 +235,7 @@ class BookSlots extends React.Component {
                   <br />
                   <Row>
                     <Col lg={{ offset: 6 }}>
-                      <Button type="primary" size="large">
+                      <Button type="primary" size="large" onClick={this.holdSlots}>
                         <Link to="/checkout">Book Tickets and Pay</Link>
                       </Button>
                     </Col>
@@ -211,4 +254,4 @@ class BookSlots extends React.Component {
     }
   }
 
-export default BookSlots;
+export default withContext(BookSlots);

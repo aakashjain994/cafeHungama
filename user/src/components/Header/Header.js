@@ -82,7 +82,7 @@ function Header(props) {
               }
              >
               <Menu.Item key="setting:1">Wallet</Menu.Item>
-              <Menu.Item key="setting:2">My Profile</Menu.Item>
+              <Menu.Item key="setting:2"><Link to="/profile"></Link>My Profile</Menu.Item>
               <Menu.Item key="setting:3"><Link to="/myorders">My orders</Link></Menu.Item>
               <Menu.Item key="setting:4"><Link to="/pastbookings">Past Bookings</Link></Menu.Item>
               <Menu.Item key="setting:5">Support</Menu.Item>
@@ -90,7 +90,7 @@ function Header(props) {
               </SubMenu>
               <Menu.Item key="logout">
               <Icon type="logout" />
-                <Button type="link" style={{color:'white'}} onClick={()=>props.logout()}>Logout</Button>
+                <Button type="link" style={{color:'white'}} onClick={()=>{props.logout();}}>Logout</Button>
               </Menu.Item>
            </Menu>
             )

@@ -53,48 +53,49 @@ class MyOrders extends React.Component {
                 <Loader type="ThreeDots" color="#000000" height={200} width={200} />)
               :(
                 <React.Fragment>{
-                  data.map(details=>{
-                    if(details.status==="not confirmed"){
-                    return (
-                    <Card
-                style={{ width:'80%',margin:'auto',marginTop:'2%',backgroundColor:'#f03c3c'}}
-                  >
-                      <Row type="flex"justify="center">
-                          <Col span={6} >
-                          <h3 style={{color:'white'}}>1-2</h3>
-                          </Col>
-                          <Col span={6}>
-                          <h3 style={{color:'white'}}>{details.ticketMRP}</h3>
-                          </Col>
-                          <Col span={6}>
-                          <h3 style={{color:'white'}}>{parseInt(details.minTickets) -parseInt(details.ticketsSold)} remaining</h3>
-                          </Col>
-
-                      </Row>
-                  </Card>
-                  );
-                  }
-                  else{
-                    return (
-                        <Card
-                style={{ width:'80%',margin:'auto',marginTop:'2%',backgroundColor:'#2dc27f'}}
-                  >
-                      <Row type="flex"justify="center">
-                          <Col span={6} >
-                          <h3 style={{color:'white'}}>1-2</h3>
-                          </Col>
-                          <Col span={6}>
-                          <h3 style={{color:'white'}}>{details.ticketMRP}</h3>
-                          </Col>
-                          <Col span={6}>
-                          <h3 style={{color:'white'}}>{parseInt(details.minTickets) -parseInt(details.ticketsSold)} remaining</h3>
-                          </Col>
-
-                      </Row>
-                  </Card>
-                  );
-                  }
-                }
+                  data.map(details=>
+                    <Card title={details.venueName}
+                    style={{ width:'80%',margin:'auto',marginTop:'2%',backgroundColor:'white'}}
+                      >{
+                    details.orders.map(order=>{
+                      console.log(order);
+                      if(order.status==="not confirmed"){
+                        return (
+                        /*<Card title={details.venueName}
+                    style={{ width:'80%',margin:'auto',marginTop:'2%',backgroundColor:'#f03c3c'}}
+                      >*/
+                          <Row type="flex"justify="center">
+                              <Col span={6} >
+                              <h3 style={{color:'#f03c3c'}}>{order.timeSlot}</h3>
+                              </Col>
+                              <Col span={6}>
+                              <h3 style={{color:'#f03c3c'}}>{order.ticketMRP}</h3>
+                              </Col>
+                              <Col span={6}>
+                              <h3 style={{color:'#f03c3c'}}>{500 - parseInt(order.ticketsSold)} remaining</h3>
+                              </Col>
+                              </Row>
+                     // </Card>
+                      );
+                      }
+                      else{
+                        return (
+                          <Row type="flex"justify="center">
+                              <Col span={6} >
+                              <h3 style={{color:'#2dc27f'}}>{order.timeSlot}</h3>
+                              </Col>
+                              <Col span={6}>
+                              <h3 style={{color:'#2dc27f'}}>{order.ticketMRP}</h3>
+                              </Col>
+                              <Col span={6}>
+                              <h3 style={{color:'#2dc27f'}}>{500 -parseInt(order.ticketsSold)} remaining</h3>
+                              </Col>
+                          </Row>
+                      );
+                      }
+                })
+              }
+              </Card>
                 )
                 }
                 </React.Fragment>

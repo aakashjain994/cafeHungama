@@ -21,7 +21,7 @@ class PastBookings extends React.Component {
 
   componentDidMount(){
     const bearer = 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVkNDFiY2Q2MzZhYWU3Mzg0MTZmZGQxMSIsImVtYWlsIjoiaGFyaXNoY2hlbm51cGF0aTJAZ21haWwuY29tIn0sImlhdCI6MTU2NDY2MDE4MX0.bO90AbCLVJY3P9UPX3x8WKYTl4FW3Glt-XTMeieyifg';
-    fetch(`http://localhost:5000/user/bookings/5d342f20bac84723fd192b84`,{
+    fetch(`http://localhost:5000/user/bookings`,{
         method:'GET',
         headers:{
             'Authorization':bearer

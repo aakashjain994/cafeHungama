@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import {Redirect} from 'react-router-dom';
+import moment from "moment";
 const myContext = React.createContext();
+
 
 class ContextProvider extends Component {
     constructor(props){
@@ -9,25 +11,30 @@ class ContextProvider extends Component {
             location:'',
             price:0,
             selectNumberOfSeats:1,
-            date:'',
+            date:moment().format('YYYY-MM-DD'),
             eventType:'',
             venues:'',
             bookedSlots:[],
             selectedRowKeys: [], // Check here to configure the default column,
             selectedRows: [],
             selectedData:[],
-            token:localStorage.getItem("token") || ""
+            token:localStorage.getItem("token") || "",
+            fastFilling:false,
+            soldPrice:0,
+            couponId:'',
+            ticketId:''
          }
          this.handleButtonClick = this.handleButtonClick.bind(this);
          this.handleLocationClick = this.handleLocationClick.bind(this);
          this.handleEventTypeClick = this.handleEventTypeClick.bind(this);
          this.onChange = this.onChange.bind(this);
          this.updateBookings = this.updateBookings.bind(this);
+         this.updateticketId = this.updateticketId.bind(this);
 
     }
     componentDidMount(){
         //if(this.state.location==='' && this.state.date==='' && this.state.eventType===''){
-        fetch(`https://cafehungama.herokuapp.com/user/venues/all`)
+        fetch(`http://localhost:5000/user/venues/all`)
         .then(response=>response.json())
         .then(data=>{
             this.setState({
@@ -40,9 +47,18 @@ class ContextProvider extends Component {
     }
 
     changePrice = () => {
+        if(this.state.fastFilling){
+        this.setState({fastFilling:false});
+        this.setState({
+            price: this.state.selectedData.reduce((acc, curr) => acc + parseInt(curr.price), 0)
+            })
+        }
+        else{
+        this.setState({fastFilling:true});
         this.setState({
           price: Math.max(...this.state.selectedData.map(sel => sel.price))
         });
+        }
       };
       decrement = () => {
         if (this.state.selectNumberOfSeats > 0)
@@ -64,7 +80,7 @@ class ContextProvider extends Component {
             eventType:this.state.eventType,
             date:this.state.date,
         }
-        fetch(`https://cafehungama.herokuapp.com/user/venues/search/`,{
+        fetch(`http://localhost:5000/user/venues/search/`,{
             method:'POST',
             headers:{
                 "Content-Type": "application/json"
@@ -82,8 +98,6 @@ class ContextProvider extends Component {
         })
 
     }
-
-
      handleLocationClick(e) {
         // message.info('Click on menu item.');
         this.setState({
@@ -113,6 +127,7 @@ class ContextProvider extends Component {
         })*/
     }
 
+
     onSelectChange = (selectedRowKeys, selectedRows) => {
         //  console.log("selectedRowKeys changed: ", selectedRowKeys, selectedRows);
         this.setState({
@@ -120,6 +135,10 @@ class ContextProvider extends Component {
           selectedData: selectedRows,
           price: selectedRows.reduce((acc, curr) => acc + parseInt(curr.price), 0)
         });
+    }
+
+    updateticketId = (ticketId) => {
+        this.setState({ticketId:ticketId});
     }
 
     signup = (userInfo) => {
@@ -225,8 +244,8 @@ class ContextProvider extends Component {
                 updateNumberOfSeats:this.updateNumberOfSeats,
                 changePrice:this.changePrice,
                 increment:this.increment,
-                decrement:this.decrement
-
+                decrement:this.decrement,
+                updateticketId:this.updateticketId
 
             }}>
                 {this.props.children}
