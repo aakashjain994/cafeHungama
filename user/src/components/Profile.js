@@ -13,8 +13,9 @@ import {
   AutoComplete,
   message
 } from 'antd';
-
+import {withContext} from '../Context';
 const { Option } = Select;
+import googleVM from '../Context';
 class Profile extends React.Component {
 
   state = {
@@ -30,8 +31,8 @@ class Profile extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        const bearer = 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVkNDFiY2Q2MzZhYWU3Mzg0MTZmZGQxMSIsImVtYWlsIjoiaGFyaXNoY2hlbm51cGF0aTJAZ21haWwuY29tIn0sImlhdCI6MTU2NDY2MDE4MX0.bO90AbCLVJY3P9UPX3x8WKYTl4FW3Glt-XTMeieyifg';
-        fetch(`http://localhost:5000/user/update/5d41b3aa36aae738416fdd07`,{
+        const bearer = 'Bearer ' + this.props.token;
+        fetch(`http://${googleVM}/user/profile/update`,{
           method:'PUT',
           headers:{
               'Authorization':bearer,
@@ -41,7 +42,6 @@ class Profile extends React.Component {
       })
       .then(response=>response.json())
       .then(data=>{
-          console.log(data);
           this.setState({loading:false,
           firstName:data.firstName,
           lastName:data.lastName,
@@ -62,8 +62,9 @@ class Profile extends React.Component {
     )
     };
   componentDidMount(){
-    const bearer = 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVkNDFiY2Q2MzZhYWU3Mzg0MTZmZGQxMSIsImVtYWlsIjoiaGFyaXNoY2hlbm51cGF0aTJAZ21haWwuY29tIn0sImlhdCI6MTU2NDY2MDE4MX0.bO90AbCLVJY3P9UPX3x8WKYTl4FW3Glt-XTMeieyifg';
-    fetch(`http://localhost:5000/user/read/5d41b3aa36aae738416fdd07`,{
+    const bearer = 'Bearer ' + this.props.token;
+    console.log(this.props.token);
+    fetch(`http://${googleVM}/user/profile/read`,{
         method:'GET',
         headers:{
             'Authorization':bearer
@@ -213,5 +214,4 @@ class Profile extends React.Component {
 }
 
 const WrappedNormalProfileForm = Form.create({ name: 'update_profile' })(Profile);
-
-export default WrappedNormalProfileForm;
+export default withContext(WrappedNormalProfileForm);

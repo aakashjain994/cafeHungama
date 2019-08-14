@@ -25,7 +25,7 @@ function Header(props) {
   return (
     <div className="header">
       <div className="header-logo">
-        <img src="" alt="LOGO" />
+      <Link to="/" style={{display:'inline',color:'white'}}><img src="" alt="LOGO" /></Link>
       </div>
       <div className="header-menu">
 
@@ -68,11 +68,11 @@ function Header(props) {
             >
               <Menu.Item key="notification">
               <Icon type="mail" />
-              Notifications
+              <Link to="/notifications" style={{display:'inline',color:'white'}}>Notifications</Link>
               </Menu.Item>
-              <Menu.Item key="orders">
+              <Menu.Item key="offers">
               <Icon type="appstore" />
-              Offers
+              <Link to="/offers" style={{display:'inline',color:'white'}}>Offers</Link>
               </Menu.Item>
               <SubMenu
               title={
@@ -81,12 +81,13 @@ function Header(props) {
                 </span>
               }
              >
-              <Menu.Item key="setting:1">Wallet</Menu.Item>
-              <Menu.Item key="setting:2"><Link to="/profile"></Link>My Profile</Menu.Item>
+              <Menu.Item key="setting:1"><Link to="/myWallet">Wallet</Link></Menu.Item>
+              <Menu.Item key="setting:2"><Link to="/profile">My Profile</Link></Menu.Item>
               <Menu.Item key="setting:3"><Link to="/myorders">My orders</Link></Menu.Item>
               <Menu.Item key="setting:4"><Link to="/pastbookings">Past Bookings</Link></Menu.Item>
-              <Menu.Item key="setting:5">Support</Menu.Item>
-              <Menu.Item key="setting:6">Newsfeed</Menu.Item>
+              <Menu.Item key="setting:5"><Link to="/vouchers">Vouchers</Link></Menu.Item>
+              <Menu.Item key="setting:6">Support</Menu.Item>
+              <Menu.Item key="setting:7">Newsfeed</Menu.Item>
               </SubMenu>
               <Menu.Item key="logout">
               <Icon type="logout" />

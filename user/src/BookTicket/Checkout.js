@@ -3,8 +3,10 @@ import {Row,Col} from 'antd';
 import {Card,Button} from 'antd';
 import './Checkout.css';
 import { ContextConsumer } from '../Context';
+import googleVM from '../Context';
 import CountDown from 'ant-design-pro/lib/CountDown';
 import {withContext} from '../Context';
+import Pusher from 'pusher-js';
 class Checkout extends Component{
 
     constructor(props){
@@ -30,8 +32,8 @@ class Checkout extends Component{
         const ticketInfo = {
             ticketId:this.props.ticketId
         }
-        const bearer = 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVkNDFiY2Q2MzZhYWU3Mzg0MTZmZGQxMSIsImVtYWlsIjoiaGFyaXNoY2hlbm51cGF0aTJAZ21haWwuY29tIn0sImlhdCI6MTU2NDY2MDE4MX0.bO90AbCLVJY3P9UPX3x8WKYTl4FW3Glt-XTMeieyifg';
-        fetch(`http://localhost:5000/user/bookings/delete`,{
+        const bearer = 'Bearer ' + this.props.token;
+        fetch(`http://${googleVM}/user/bookings/delete`,{
                 method:'POST',
                 headers:{
                     "Content-Type": "application/json",
@@ -50,8 +52,8 @@ class Checkout extends Component{
             ticketId:this.props.ticketId,
             fastFilling:this.props.fastFilling
         }
-        const bearer = 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVkNDFiY2Q2MzZhYWU3Mzg0MTZmZGQxMSIsImVtYWlsIjoiaGFyaXNoY2hlbm51cGF0aTJAZ21haWwuY29tIn0sImlhdCI6MTU2NDY2MDE4MX0.bO90AbCLVJY3P9UPX3x8WKYTl4FW3Glt-XTMeieyifg';
-        fetch(`http://localhost:5000/user/bookings/confirm`,{
+        const bearer = 'Bearer ' + this.props.token;
+        fetch(`http://${googleVM}/user/bookings/confirm`,{
             method:'POST',
             headers:{
                 "Content-Type": "application/json",
@@ -69,6 +71,7 @@ class Checkout extends Component{
     render(){
         const {data} = this.state;
         const targetTime = new Date().getTime() + 180000;
+
         return(
             <ContextConsumer>
                 {(value)=>{

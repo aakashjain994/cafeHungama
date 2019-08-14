@@ -2,6 +2,7 @@ import { Skeleton, Switch, Card, Icon, Avatar,Row,Col,Select } from 'antd';
 import Loader from 'react-loader-spinner';
 import React from 'react';
 import {withContext} from '../Context';
+import googleVM from '../Context';
 const { Meta } = Card;
 const {Option} = Select;
 
@@ -20,8 +21,8 @@ class PastBookings extends React.Component {
   }
 
   componentDidMount(){
-    const bearer = 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVkNDFiY2Q2MzZhYWU3Mzg0MTZmZGQxMSIsImVtYWlsIjoiaGFyaXNoY2hlbm51cGF0aTJAZ21haWwuY29tIn0sImlhdCI6MTU2NDY2MDE4MX0.bO90AbCLVJY3P9UPX3x8WKYTl4FW3Glt-XTMeieyifg';
-    fetch(`http://localhost:5000/user/bookings`,{
+    const bearer = 'Bearer ' + this.props.token;
+    fetch(`http://${googleVM}/user/bookings`,{
         method:'GET',
         headers:{
             'Authorization':bearer

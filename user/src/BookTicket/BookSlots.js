@@ -1,6 +1,7 @@
 import React from "react";
 import moment from "moment";
 import {withContext} from '../Context';
+import googleVM from '../Context';
 import { Table, DatePicker, Button, Row, Col, Card } from "antd";
 import VenueDetails from "./VenueDetails";
 import NearestVenues from "./NearestVenues";
@@ -51,7 +52,7 @@ class BookSlots extends React.Component {
     const {id} = this.props.match.params;
     const {date} = this.props.date;
     console.log(date);
-    fetch(`http://localhost:5000/user/venues/${id}/${date}`)
+    fetch(`http://${googleVM}/user/venues/${id}/${date}`)
     .then(response=>response.json())
     .then(s=>{
        const slot_tables = s
@@ -89,7 +90,7 @@ class BookSlots extends React.Component {
     }
     console.log(data);
     console.log(`Bearer  ${this.props.token}`);
-    fetch(`http://localhost:5000/user/bookings/new`,{
+    fetch(`http://${googleVM}/user/bookings/new`,{
       method:'POST',
       headers:{
           "Content-Type": "application/json",

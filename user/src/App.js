@@ -13,6 +13,10 @@ import PastBookings from "../src/BookTicket/PastBookings";
 import ProtectedRoute from './components/ProtectedRoute';
 import MyOrders from '../src/BookTicket/MyOrders';
 import Profile from '../src/components/Profile';
+import Notifications from "./components/Notifications";
+import Vouchers from "./components/Vouchers";
+import Offers from "./components/Offers";
+import Wallet from "./components/Wallet";
 function App () {
   return (
     <ContextProvider>
@@ -26,7 +30,11 @@ function App () {
         <Route path="/signup" component={Signup} />
         <Route path="/pastbookings" component={PastBookings} />
         <Route path="/myorders" component={MyOrders} />
-        <Route path="/profile"component={Profile} />
+        <Route path="/profile" component={Profile} />
+        <Route path="/notifications" component={Notifications} />
+        <Route path="/vouchers" component={Vouchers} />
+        <Route path="/offers" component={Offers} />
+        <Route path="/myWallet" component={Wallet} />
       </Switch>
       <div className="Footer">
         <Footer />
