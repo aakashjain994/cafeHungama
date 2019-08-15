@@ -2,7 +2,7 @@ import { Skeleton, Switch, Card, Icon, Avatar,Row,Col,Select } from 'antd';
 import Loader from 'react-loader-spinner';
 import React from 'react';
 import {withContext} from '../Context';
-import googleVM from '../Context';
+import {googleVM} from '../Context';
 const { Meta } = Card;
 const {Option} = Select;
 
@@ -22,7 +22,7 @@ class MyOrders extends React.Component {
 
   componentDidMount(){
     const bearer = 'Bearer ' + this.props.token;
-    fetch(`http://localhost:5000/user/orders`,{
+    fetch(`http://${googleVM}/user/orders`,{
         method:'GET',
         headers:{
             'Authorization':bearer

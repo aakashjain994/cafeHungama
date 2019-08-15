@@ -14,8 +14,9 @@ import {
   message
 } from 'antd';
 import {withContext} from '../Context';
+import {googleVM} from '../Context';
 const { Option } = Select;
-import googleVM from '../Context';
+
 class Profile extends React.Component {
 
   state = {

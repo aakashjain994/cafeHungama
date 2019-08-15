@@ -2,7 +2,7 @@ import { Skeleton, Switch, Card, Icon, Avatar,Row,Col,Select } from 'antd';
 import Loader from 'react-loader-spinner';
 import React from 'react';
 import {withContext} from '../Context';
-import googleVM from '../Context';
+import {googleVM} from '../Context';
 const { Meta } = Card;
 const {Option} = Select;
 

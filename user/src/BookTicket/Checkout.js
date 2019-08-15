@@ -3,7 +3,7 @@ import {Row,Col} from 'antd';
 import {Card,Button} from 'antd';
 import './Checkout.css';
 import { ContextConsumer } from '../Context';
-import googleVM from '../Context';
+import {googleVM} from '../Context';
 import CountDown from 'ant-design-pro/lib/CountDown';
 import {withContext} from '../Context';
 import Pusher from 'pusher-js';

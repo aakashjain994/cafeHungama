@@ -1,7 +1,7 @@
 import React from "react";
 import moment from "moment";
 import {withContext} from '../Context';
-import googleVM from '../Context';
+import {googleVM} from '../Context';
 import { Table, DatePicker, Button, Row, Col, Card } from "antd";
 import VenueDetails from "./VenueDetails";
 import NearestVenues from "./NearestVenues";
