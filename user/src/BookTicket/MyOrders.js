@@ -22,7 +22,7 @@ class MyOrders extends React.Component {
 
   componentDidMount(){
     const bearer = 'Bearer ' + this.props.token;
-    fetch(`http://${googleVM}/user/orders`,{
+    fetch(`${googleVM}/user/orders`,{
         method:'GET',
         headers:{
             'Authorization':bearer

@@ -33,7 +33,7 @@ class Profile extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         const bearer = 'Bearer ' + this.props.token;
-        fetch(`http://${googleVM}/user/profile/update`,{
+        fetch(`${googleVM}/user/profile/update`,{
           method:'PUT',
           headers:{
               'Authorization':bearer,
@@ -65,7 +65,7 @@ class Profile extends React.Component {
   componentDidMount(){
     const bearer = 'Bearer ' + this.props.token;
     console.log(this.props.token);
-    fetch(`http://${googleVM}/user/profile/read`,{
+    fetch(`${googleVM}/user/profile/read`,{
         method:'GET',
         headers:{
             'Authorization':bearer

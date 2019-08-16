@@ -22,7 +22,7 @@ class PastBookings extends React.Component {
 
   componentDidMount(){
     const bearer = 'Bearer ' + this.props.token;
-    fetch(`http://${googleVM}/user/bookings`,{
+    fetch(`${googleVM}/user/bookings`,{
         method:'GET',
         headers:{
             'Authorization':bearer

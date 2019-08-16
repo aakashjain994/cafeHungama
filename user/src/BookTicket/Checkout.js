@@ -33,7 +33,7 @@ class Checkout extends Component{
             ticketId:this.props.ticketId
         }
         const bearer = 'Bearer ' + this.props.token;
-        fetch(`http://${googleVM}/user/bookings/delete`,{
+        fetch(`${googleVM}/user/bookings/delete`,{
                 method:'POST',
                 headers:{
                     "Content-Type": "application/json",
@@ -53,7 +53,7 @@ class Checkout extends Component{
             fastFilling:this.props.fastFilling
         }
         const bearer = 'Bearer ' + this.props.token;
-        fetch(`http://${googleVM}/user/bookings/confirm`,{
+        fetch(`${googleVM}/user/bookings/confirm`,{
             method:'POST',
             headers:{
                 "Content-Type": "application/json",

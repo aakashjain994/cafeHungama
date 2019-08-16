@@ -52,7 +52,7 @@ class BookSlots extends React.Component {
     const {id} = this.props.match.params;
     const {date} = this.props.date;
     console.log(date);
-    fetch(`http://${googleVM}/user/venues/${id}/${date}`)
+    fetch(`${googleVM}/user/venues/${id}/${date}`)
     .then(response=>response.json())
     .then(s=>{
        const slot_tables = s
@@ -90,7 +90,7 @@ class BookSlots extends React.Component {
     }
     console.log(data);
     console.log(`Bearer  ${this.props.token}`);
-    fetch(`http://${googleVM}/user/bookings/new`,{
+    fetch(`${googleVM}/user/bookings/new`,{
       method:'POST',
       headers:{
           "Content-Type": "application/json",

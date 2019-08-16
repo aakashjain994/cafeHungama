@@ -6,7 +6,7 @@ import { Button, notification } from 'antd';
 const myContext = React.createContext();
 
 
-export const googleVM = '35.234.217.67:80/';
+export const googleVM = 'http://35.234.217.67:80';
 
 const close = () => {
     console.log(
@@ -70,7 +70,7 @@ class ContextProvider extends Component {
     }
     componentDidMount(){
         //if(this.state.location==='' && this.state.date==='' && this.state.eventType===''){
-        fetch(`http://${googleVM}/user/venues/all`)
+        fetch(`${googleVM}/user/venues/all`)
         .then(response=>response.json())
         .then(data=>{
             this.setState({
@@ -116,7 +116,7 @@ class ContextProvider extends Component {
             eventType:this.state.eventType,
             date:this.state.date,
         }
-        fetch(`http://${googleVM}/user/venues/search/`,{
+        fetch(`${googleVM}/user/venues/search/`,{
             method:'POST',
             headers:{
                 "Content-Type": "application/json"
@@ -193,7 +193,7 @@ class ContextProvider extends Component {
               //  console.log(response);
             //})
             console.log(userInfo);
-            return fetch(`http://${googleVM}/user/signup`,{
+            return fetch(`${googleVM}/user/signup`,{
                 method:'POST',
                 headers:{
                     "Content-Type": "application/json"
@@ -224,7 +224,7 @@ class ContextProvider extends Component {
                // console.log(response);
            // })
            console.log(credentials);
-           return fetch(`http://${googleVM}/user/login`,{
+           return fetch(`${googleVM}/user/login`,{
             method:'POST',
             headers:{
                 "Content-Type": "application/json"
